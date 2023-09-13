@@ -3,9 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
   <body>
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <svg class="modal-close-icon" width="8" height="8">
+            <use href="./images/icons.svg#icon-btn-close"></use>
+          </svg>
+        </button>
+        <h2 class="text modal-text">Order now</h2>
+        <form class="modal-form" name="modal_form">
+          <label class="form-label" for="user_name">Name</label>
+          <input
+            class="form-field form-wrapper"
+            type="text"
+            name="user_name"
+            id="user_name"
+            minlength="5"
+            pattern="^[a-zA-Z0-9]+\s[a-zA-Z0-9]+$"
+            required
+            autofocus
+          />
+
+          <label class="form-label" for="user_phone"> Phone number</label>
+          <input
+            class="form-field form-wrapper"
+            type="tel"
+            name="user_phone"
+            id="user_phone"
+            required
+          />
+
+          <label class="form-label" for="user_mail_modal">Email</label>
+          <input
+            class="form-field form-wrapper"
+            type="email"
+            name="user_mail_modal"
+            id="user_mail_modal"
+            required
+          />
+
+          <label class="form-label" for="modal_comment">Comment</label>
+          <textarea
+            class="modal-textarea"
+            name="modal_comment"
+            id="modal_comment"
+            rows="6"
+          ></textarea>
+
+          <button class="button-nav">Send</button>
+        </form>
+      </div>
+    </div>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
