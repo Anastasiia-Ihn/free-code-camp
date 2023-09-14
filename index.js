@@ -126,6 +126,7 @@
 const modalCloseBtnOrder = document.querySelector('.modal-close-btn-order');
 const backdropEl = document.querySelector('.backdrop');
 const formOrder = document.querySelector('.modal-form-order');
+// const OpenModalOrderNow = document.querySelector('.open-modal-order-now')
 
 
 // клік на btnClose
@@ -138,27 +139,24 @@ document.addEventListener("keydown", onClickEscape);
 formOrder.addEventListener('submit', onClickSend);
 
 
-function onBtnClose(e) {
- backdropEl.classList.add('is-hidden')}
+function onBtnClose() {
+  backdropEl.classList.toggle('is-hidden');
+modalCloseBtnOrder.removeEventListener('click', onBtnClose);
+}
 
 function onclickBackdrop() {
-    backdropEl.classList.add('is-hidden')
+  backdropEl.classList.toggle('is-hidden');
+  backdropEl.removeEventListener('click', onclickBackdrop);
 }
 
 function onClickEscape(e) {
   if (e.code === "Escape") {
+ backdropEl.classList.toggle('is-hidden')
 
     console.log("Closing window...");
     document.removeEventListener("keydown", onClickEscape) } //  знімаємо слухача на Escape
-
-  
+ 
 }
-
-
-
-
-
-
 
 function onClickSend(evt) {
 
@@ -178,9 +176,8 @@ function onClickSend(evt) {
         'Comment': modal_comment.value
       })
       
-    form.reset()   //очищаємо поле
-    }
-         
-    
-    
+      form.reset()   //очищаємо поле
+  }
+  formOrder.removeEventListener('submit', onClickSend);
+   
 }

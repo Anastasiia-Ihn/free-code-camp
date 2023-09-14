@@ -6,8 +6,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-modal);
-  transition: opacity var(--animation), visibility var(--animation);
+  /* background-color: var(--color-modal);
+  transition: opacity var(--animation), visibility var(--animation); */
 }
 
 .modal {
@@ -153,3 +153,6 @@
     margin-bottom: 40px;
   }
 }
+/* .is-hidden {
+  display: none;
+} */
