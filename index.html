@@ -10,13 +10,13 @@
   <body>
     <div class="backdrop is-hidden" data-modal>
       <div class="modal">
-        <button type="button" class="modal-close-btn" data-modal-close>
+        <button type="button" class="modal-close-btn-order" data-modal-close>
           <svg class="modal-close-icon" width="8" height="8">
             <use href="./images/icons.svg#icon-btn-close"></use>
           </svg>
         </button>
         <h2 class="text modal-text">Order now</h2>
-        <form class="modal-form" name="modal_form">
+        <form class="modal-form-order" name="modal_form">
           <label class="form-label" for="user_name">Name</label>
           <input
             class="form-field form-wrapper"
@@ -24,7 +24,6 @@
             name="user_name"
             id="user_name"
             minlength="5"
-            pattern="^[a-zA-Z0-9]+\s[a-zA-Z0-9]+$"
             required
             autofocus
           />
