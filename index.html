@@ -8,8 +8,7 @@
     <title>Document</title>
   </head>
   <body>
-
-    <div class="backdrop is-hidden">
+    <!-- <div class="backdrop is-hidden">
       <div class="modal">
         <button type="button" class="modal-close-btn-order">
           <svg class="modal-close-icon" width="20" height="20">
@@ -59,8 +58,77 @@
           <button class="button-nav">Send</button>
         </form>
       </div>
-    </div>
+    </div> -->
 
+    <div class="backdrop is-hidden">
+      <div class="modal-order-now visually-hidden">
+        <button type="button" class="modal-close-btn-order">
+          <svg class="modal-close-icon" width="20" height="20">
+            <use href="./img/icon-sprite.svg#icon-x-close"></use>
+          </svg>
+        </button>
+        <h2 class="modal-text">Order now</h2>
+        <form class="modal-form-order" name="modal_form">
+          <label class="form-label" for="user_mail_modal">Email</label>
+          <input
+            class="form-field"
+            type="email"
+            name="user_mail_modal"
+            id="user_mail_modal"
+            required
+          />
+
+          <button class="button-send-form">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="add"></div>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
+
+<div class="simple-rating">
+  <div class="simple-rating-items">
+    <input
+      id="simple-rating-5"
+      type="radio"
+      class="simple-rating-item"
+      name="simple-rating"
+      value="5"
+    />
+    <label for="simple-rating-5" class="simple-rating-label"></label>
+
+    <input
+      id="simple-rating-4"
+      type="radio"
+      class="simple-rating-item"
+      name="simple-rating"
+      value="4"
+    />
+    <label for="simple-rating-4" class="simple-rating-label"></label>
+    <input
+      id="simple-rating-3"
+      type="radio"
+      class="simple-rating-item"
+      name="simple-rating"
+      value="3"
+    />
+    <label for="simple-rating-3" class="simple-rating-label"></label>
+    <input
+      id="simple-rating-2"
+      type="radio"
+      class="simple-rating-item"
+      name="simple-rating"
+      value="2"
+    />
+    <label for="simple-rating-2" class="simple-rating-label"></label>
+    <input
+      id="simple-rating-1"
+      type="radio"
+      class="simple-rating-item"
+      name="simple-rating"
+      value="1"
+    />
+    <label for="simple-rating-1" class="simple-rating-label"></label>
+  </div>
+</div>

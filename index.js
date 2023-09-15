@@ -123,10 +123,72 @@
 
 
 
+// const modalCloseBtnOrder = document.querySelector('.modal-close-btn-order');
+// const backdropEl = document.querySelector('.backdrop');
+// const formOrder = document.querySelector('.modal-form-order');
+// // const OpenModalOrderNow = document.querySelector('.open-modal-order-now')
+
+
+// // клік на btnClose
+// modalCloseBtnOrder.addEventListener('click', onBtnClose);
+// // клік на backdropEl
+// backdropEl.addEventListener('click', onclickBackdrop);
+// // клік на Escape
+// document.addEventListener("keydown", onClickEscape);
+// // клік на Send
+// formOrder.addEventListener('submit', onClickSend);
+
+
+// function onBtnClose() {
+//   backdropEl.classList.toggle('is-hidden');
+// modalCloseBtnOrder.removeEventListener('click', onBtnClose);
+// }
+
+// function onclickBackdrop() {
+//   backdropEl.classList.toggle('is-hidden');
+//   backdropEl.removeEventListener('click', onclickBackdrop);
+// }
+
+// function onClickEscape(e) {
+//   if (e.code === "Escape") {
+//  backdropEl.classList.toggle('is-hidden')
+
+//     console.log("Closing window...");
+//     document.removeEventListener("keydown", onClickEscape) } //  знімаємо слухача на Escape
+ 
+// }
+
+// function onClickSend(evt) {
+
+//   evt.preventDefault();
+
+//     const { user_name, user_phone, user_mail_modal, modal_comment  } = evt.target.elements;
+ 
+//     // перевірка чи заповнені поля вводу
+//     if (user_phone === "" || user_mail_modal.value === "" || user_name.value === '' || modal_comment.value ==='') {
+//         alert('All fields must be filled')
+//     }
+//     else {
+//       console.log({
+//         'Name': user_name.value,
+//         'Phone number': user_phone.value,
+//         'Email': user_mail_modal.value,
+//         'Comment': modal_comment.value
+//       })
+      
+//       form.reset()   //очищаємо поле
+//   }
+//   formOrder.removeEventListener('submit', onClickSend);
+   
+// }
+
+
+
 const modalCloseBtnOrder = document.querySelector('.modal-close-btn-order');
 const backdropEl = document.querySelector('.backdrop');
 const formOrder = document.querySelector('.modal-form-order');
-// const OpenModalOrderNow = document.querySelector('.open-modal-order-now')
+
+const modalOrderNow = document.querySelector('.modal-order-now')
 
 
 // клік на btnClose
@@ -140,13 +202,18 @@ formOrder.addEventListener('submit', onClickSend);
 
 
 function onBtnClose() {
-  backdropEl.classList.toggle('is-hidden');
-modalCloseBtnOrder.removeEventListener('click', onBtnClose);
+  backdropEl.classList.add('is-hidden');
+// modalCloseBtnOrder.removeEventListener('click', onBtnClose);
 }
 
-function onclickBackdrop() {
-  backdropEl.classList.toggle('is-hidden');
+function onclickBackdrop(e) {
+  
+ if (e.target===backdropEl) {
+   backdropEl.classList.toggle('is-hidden');
   backdropEl.removeEventListener('click', onclickBackdrop);
+}
+
+ 
 }
 
 function onClickEscape(e) {
@@ -176,8 +243,56 @@ function onClickSend(evt) {
         'Comment': modal_comment.value
       })
       
-      form.reset()   //очищаємо поле
+      formOrder.reset()   //очищаємо поле
+      formOrder.removeEventListener('submit', onClickSend);
+         backdropEl.classList.toggle('is-hidden');
+
   }
-  formOrder.removeEventListener('submit', onClickSend);
+  
    
 }
+
+
+
+
+const add = document.querySelector('.add')
+
+
+function fetchBreeds() {
+    const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/recipes';
+        
+  return fetch(`${BASE_URL}`)
+    .then((resp) => {
+    if (!resp.ok) {console.log('Oops! Something went wrong! Try reloading the page!')}
+    return resp.json();
+    })
+    .catch(() =>console.log('Oops! Something went wrong! Try reloading the page!'))
+}
+console.log(fetchBreeds());
+
+  fetchBreeds().then((data) => {console.log(data.results[0]);
+    const { _id, title, preview, description, rating } = data.results[0]
+    console.log(_id);
+    createMarkupElForFilter(data.results[0])
+  }).catch(() => {
+    console.log('err');
+  })
+
+
+
+function createMarkupElForFilter(el) {
+    
+  
+    const markup = `<div class="blok-recipes id="${el._id}">
+  <img class="img-blok-recipes" src="${el.preview}" alt="${el.title}" />
+ <div class="context-blok-recipes"> <h3 class="title-blok-recipes">${el.title}</h3>
+  <p class="text-blok-recipes">${el.description}</p>
+  <div>
+    <p class="text-number-blok-recipes">${el.rating}</p>
+    <input type="checkbox" name="" id="" />
+  </div>
+  <button class="btn-blok-recipes-see" type="button"></button></div>
+</div>`
+    add.innerHTML = markup
+  }
+// {_id,title,preview,description, rating}
