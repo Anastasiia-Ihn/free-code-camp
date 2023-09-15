@@ -268,31 +268,31 @@ function fetchBreeds() {
     })
     .catch(() =>console.log('Oops! Something went wrong! Try reloading the page!'))
 }
-console.log(fetchBreeds());
 
-  fetchBreeds().then((data) => {console.log(data.results[0]);
-    const { _id, title, preview, description, rating } = data.results[0]
-    console.log(_id);
-    createMarkupElForFilter(data.results[0])
+  fetchBreeds().then((data) => {console.log(data.results);
+    const { _id, title, preview, description, rating } = data.results
+    add.innerHTML = createMarkupElForFilter(data.results)
+    console.log(add);
   }).catch(() => {
     console.log('err');
   })
 
 
 
-function createMarkupElForFilter(el) {
-    
+function createMarkupElForFilter(arr) {
   
-    const markup = `<div class="blok-recipes id="${el._id}">
-  <img class="img-blok-recipes" src="${el.preview}" alt="${el.title}" />
- <div class="context-blok-recipes"> <h3 class="title-blok-recipes">${el.title}</h3>
-  <p class="text-blok-recipes">${el.description}</p>
+ return arr.map(({ _id, title, preview, description, rating }) => 
+ 
+        `<div class="blok-recipes id="${_id}">
+  <img class="img-blok-recipes" src="${preview}" alt="${title}" />
+ <div class="context-blok-recipes"> <h3 class="title-blok-recipes">${title}</h3>
+  <p class="text-blok-recipes">${description}</p>
   <div>
-    <p class="text-number-blok-recipes">${el.rating}</p>
+    <p class="text-number-blok-recipes">${rating}</p>
     <input type="checkbox" name="" id="" />
   </div>
-  <button class="btn-blok-recipes-see" type="button"></button></div>
-</div>`
-    add.innerHTML = markup
+  <button class="btn-blok-recipes-see" type="button">See recipe</button></div>
+</div>`).join(''); 
+   
   }
-// {_id,title,preview,description, rating}
+
